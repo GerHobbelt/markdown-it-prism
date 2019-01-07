@@ -1,6 +1,6 @@
 {
-  "name": "markdown-it-prism",
-  "version": "1.0.1",
+  "name": "@gerhobbelt/markdown-it-prism",
+  "version": "1.0.1-1",
   "description": "Highlights code blocks in markdown-it using Prism.",
   "keywords": [
     "markdown-it",
@@ -31,30 +31,30 @@
   "scripts": {
     "build": "babel *.js -d build",
     "lint": "eslint *.js",
-    "prepublish": "npm run build",
+    "prepublish-orig": "npm run build",
     "pretest": " npm run build",
     "unittest": "mocha build/test.js",
-    "test": "npm run lint && npm run unittest"
+    "test": "npm run lint && npm run unittest",
+    "pub": "npm publish --access public"
   },
   "dependencies": {
-    "prismjs": "^1.5.1"
+    "prismjs": "1.15.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-latest": "^6.16.0",
-    "chai": "*",
-    "chai-string": "^1.2.0",
-    "eslint": "^3.8.0",
-    "markdown-it": "^8.0.0",
-    "mocha": "*"
+    "@gerhobbelt/babel-cli": "7.2.1-26",
+    "@gerhobbelt/babel-core": "^7.2.1-26",
+    "@gerhobbelt/babel-plugin-add-module-exports": "0.3.3-1",
+    "@gerhobbelt/debug": "^4.1.1-4",
+    "@gerhobbelt/markdown-it": "8.4.2-24",
+    "chai": "4.2.0",
+    "chai-string": "1.5.0",
+    "eslint": "5.12.0",
+    "mocha": "5.2.0",
+    "slash": "^2.0.0"
   },
   "babel": {
-    "presets": [
-      "latest"
-    ],
     "plugins": [
-      "add-module-exports"
+      "@gerhobbelt/babel-add-module-exports"
     ]
   }
 }
