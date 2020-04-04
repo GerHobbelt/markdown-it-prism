@@ -18,11 +18,14 @@
   "files": [
     "README.md",
     "LICENSE",
-    "build/index.js"
+    "build/index.js",
+    "index.js"
   ],
+  "type": "module",
   "main": "build/index.js",
+  "module": "index.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=8"
   },
   "repository": {
     "type": "git",
@@ -37,24 +40,43 @@
     "test": "npm run lint && npm run unittest",
     "pub": "npm publish --access public"
   },
-  "dependencies": {
-    "prismjs": "1.15.0"
+  "peerDependencies": {
+    "prismjs": "1.*"
   },
   "devDependencies": {
-    "@gerhobbelt/babel-cli": "7.2.1-26",
-    "@gerhobbelt/babel-core": "^7.2.1-26",
-    "@gerhobbelt/babel-plugin-add-module-exports": "0.3.3-1",
-    "@gerhobbelt/debug": "^4.1.1-4",
-    "@gerhobbelt/markdown-it": "8.4.2-24",
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.0",
+    "babel-plugin-add-module-exports": "1.0.2",
+    "@gerhobbelt/markdown-it": "10.0.0-31",
     "chai": "4.2.0",
     "chai-string": "1.5.0",
-    "eslint": "5.12.0",
-    "mocha": "5.2.0",
-    "slash": "^2.0.0"
+    "eslint": "6.8.0",
+    "mocha": "7.1.1",
+    "prismjs": "1.20.0",
+    "slash": "3.0.0"
   },
   "babel": {
     "plugins": [
-      "@gerhobbelt/babel-add-module-exports"
+      "babel-plugin-add-module-exports"
+    ],
+    "ignore": [
+      "node_modules/**/*.js"
+    ],
+    "compact": false,
+    "retainLines": false,
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "browsers": [
+              "> 2%"
+            ],
+            "node": "8.0"
+          }
+        }
+      ]
     ]
   }
 }
