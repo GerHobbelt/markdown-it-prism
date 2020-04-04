@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "pinVersions": true,
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    {
+      "depTypeList": ["engines"],
+      "enabled": false
+    },
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance"],
+      "automerge": true
+    }
+  ]
+}
