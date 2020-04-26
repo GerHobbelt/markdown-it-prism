@@ -35,13 +35,13 @@
     "build": "babel *.js -d build",
     "lint": "eslint *.js",
     "fix": "eslint --fix *.js",
-    "prepare": "npm run build",
+    "orig-prepare": "npm run build",
     "unittest": "mocha test.js",
     "test": "npm run lint && npm run unittest",
     "pub": "npm publish --access public"
   },
   "peerDependencies": {
-    "prismjs": "1.*"
+    "@gerhobbelt/prismjs": "1.*"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -53,8 +53,8 @@
     "chai": "4.2.0",
     "chai-string": "1.5.0",
     "eslint": "6.8.0",
-    "mocha": "7.1.1",
-    "prismjs": "1.20.0",
+    "mocha": "7.1.2",
+    "@gerhobbelt/prismjs": "1.20.1-1",
     "slash": "3.0.0"
   },
   "commitlint": {
