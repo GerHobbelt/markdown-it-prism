@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = markdownItPrism;
 
-var _prismjs = _interopRequireDefault(require("prismjs"));
+var _prismjs = _interopRequireDefault(require("@gerhobbelt/prismjs"));
 
-var _components = _interopRequireDefault(require("prismjs/components/"));
+var _components = _interopRequireDefault(require("@gerhobbelt/prismjs/components/"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -70,7 +70,7 @@ function loadPrismLang(lang) {
 
 function loadPrismPlugin(name) {
   try {
-    require(`prismjs/plugins/${name}/prism-${name}`);
+    require(`@gerhobbelt/prismjs/plugins/${name}/prism-${name}`);
   } catch (e) {
     throw new Error(`Cannot load Prism plugin "${name}". Please check the spelling.`);
   }

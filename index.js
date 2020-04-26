@@ -1,5 +1,5 @@
-import Prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
+import Prism from '@gerhobbelt/prismjs';
+import loadLanguages from '@gerhobbelt/prismjs/components/';
 
 /**
  * A callback that can be used to perform custom initialisation of the Prism instance.
@@ -59,7 +59,7 @@ function loadPrismLang(lang) {
  */
 function loadPrismPlugin(name) {
 	try {
-		require(`prismjs/plugins/${name}/prism-${name}`);
+		require(`@gerhobbelt/prismjs/plugins/${name}/prism-${name}`);
 	} catch (e) {
 		throw new Error(`Cannot load Prism plugin "${name}". Please check the spelling.`);
 	}
