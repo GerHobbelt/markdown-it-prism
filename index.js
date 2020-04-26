@@ -23,6 +23,8 @@ import loadLanguages from '@gerhobbelt/prismjs/components/';
  *        The language to use for code block that do not specify a language
  * @property {String} defaultLanguage
  *        Shorthand to set both {@code defaultLanguageForUnknown} and {@code defaultLanguageForUnspecified} to the same value
+ * @property {Function} noKnownLanguageCallback
+ *        Function which will be invoked when the specified/default language is not known to Prism. The function is passed the error message, the specified language and the set of available languages.
  */
 const DEFAULTS = {
 	plugins: [],
@@ -30,7 +32,8 @@ const DEFAULTS = {
 	},
 	defaultLanguageForUnknown: undefined,
 	defaultLanguageForUnspecified: undefined,
-	defaultLanguage: undefined
+	defaultLanguage: undefined,
+	noKnownLanguageCallback: undefined
 };
 
 
@@ -104,7 +107,15 @@ function selectLanguage(options, lang) {
 function highlight(markdownit, options, text, lang) {
 	let langToUse, prismLang;
 	[langToUse, prismLang] = selectLanguage(options, lang);
-	const code = prismLang ? Prism.highlight(text, prismLang) : markdownit.utils.escapeHtml(text);
+	let code;
+	if (prismLang) {
+		code = Prism.highlight(text, prismLang);
+	} else {
+		if (options.noKnownLanguageCallback && lang) {
+			options.noKnownLanguageCallback(`There is no Prism language '${lang}' for highlight chunk:\n${text}`, lang, loadLanguages.getSupportedLanguages());
+		}
+		code = markdownit.utils.escapeHtml(text);
+	}
 	const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${langToUse}"` : '';
 	return `<pre${classAttribute}><code${classAttribute}>${code}</code></pre>`;
 }

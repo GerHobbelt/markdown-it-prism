@@ -84,6 +84,40 @@ describe('markdown-it-prism', () => {
 		).to.equalIgnoreSpaces(read('expected/fenced-with-language.html'));
 	});
 
+	it('falls back to defaultLanguage if no language and no defaultLanguageForUnspecified is specified, while noKnownLanguageCallback option is specified', () => {
+		expect(markdownit()
+			.use(markdownItPrism, {
+				defaultLanguage: 'java',
+				noKnownLanguageCallback: (msg /* , lang, available */) => {
+					throw new Error(msg);
+				}
+			})
+			.render(read('input/fenced-without-language.md'))
+		).to.equalIgnoreSpaces(read('expected/fenced-with-language.html'));
+	});
+
+	it('does not invoke noKnownLanguageCallback if no language and no defaultLanguage is specified', () => {
+		expect(markdownit()
+			.use(markdownItPrism, {
+				noKnownLanguageCallback: (msg /* , lang, available */) => {
+					throw new Error(msg);
+				}
+			})
+			.render(read('input/fenced-without-language.md'))
+		).to.equalIgnoreSpaces(read('expected/fenced-without-language.html'));
+	});
+
+	it('invokes noKnownLanguageCallback if language is specified but unknown', () => {
+		expect(() => markdownit()
+			.use(markdownItPrism, {
+				noKnownLanguageCallback: (msg /* , lang, available */) => {
+					throw new Error(msg);
+				}
+			})
+			.render(read('input/fenced-with-unknown-language.md'))
+		).to.throw(Error, /There is no Prism language/);
+	});
+
 	it('does not add classes to indented code blocks', () => {
 		expect(markdownit()
 			.use(markdownItPrism)
