@@ -1,9 +1,5 @@
-/* eslint-env mocha */
-
-import chai, {expect} from 'chai';
-import chaiString from 'chai-string';
 import markdownit from '@gerhobbelt/markdown-it';
-import markdownItPrism from './index';
+import markdownItPrism from '../src';
 import fs from 'fs';
 
 chai.use(chaiString);
@@ -12,7 +8,7 @@ const read = path => fs.readFileSync(`testdata/${path}`).toString();
 
 describe('markdown-it-prism', () => {
 
-	it('highlights fenced code blocks with language specification using Prism', () => {
+	it('highlights fenced code blocks with a language specification using Prism', () => {
 		expect(markdownit()
 			.use(markdownItPrism)
 			.render(read('input/fenced-with-language.md'))
