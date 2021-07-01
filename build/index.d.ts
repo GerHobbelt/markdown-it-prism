@@ -1,5 +1,5 @@
-import Prism from "prismjs";
-import MarkdownIt from "markdown-it";
+import Prism from '@gerhobbelt/prismjs';
+import MarkdownIt from '@gerhobbelt/markdown-it';
 interface Options {
     plugins: string[];
     /**
@@ -20,6 +20,10 @@ interface Options {
      * to each option if it is set to {@code undefined}.
      */
     defaultLanguage?: string;
+    /**
+     * Function which will be invoked when the specified/default language is not known to Prism. The function is passed the error message, the specified language and the set of available languages.
+     */
+    noKnownLanguageCallback?: any;
 }
 /**
  * Initialisation function of the plugin. This function is not called directly by clients, but is rather provided
