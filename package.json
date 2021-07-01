@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jGleitz/markdown-it-prism.git"
+    "url": "https://github.com/catnose99/markdown-it-prism.git"
   },
   "scripts": {
     "build": "npm-run-all build:*",
