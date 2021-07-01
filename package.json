@@ -1,6 +1,6 @@
 {
   "name": "@gerhobbelt/markdown-it-prism",
-  "version": "2.1.4-5",
+  "version": "2.1.7-5",
   "description": "Highlights code blocks in markdown-it using Prism.",
   "keywords": [
     "markdown-it",
@@ -10,7 +10,7 @@
     "prismjs"
   ],
   "homepage": "https://github.com/jGleitz/markdown-it-prism",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "author": {
     "name": "Joshua Gleitze",
     "url": "https://joshuagleitze.de"
@@ -64,7 +64,7 @@
     "eslint": "7.29.0",
     "jest": "27.0.6",
     "mocha": "9.0.1",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all": "4.1.5",
     "semantic-release": "17.4.4",
     "typescript": "4.3.4"
   },

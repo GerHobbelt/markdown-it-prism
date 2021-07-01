@@ -2,6 +2,27 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.7](https://github.com/jGleitz/markdown-it-prism/compare/v2.1.6...v2.1.7) (2021-06-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prismjs to v1.24.0 ([aff5137](https://github.com/jGleitz/markdown-it-prism/commit/aff5137ddcae614022d5c3de15ff064e34d3f459))
+
+## [2.1.6](https://github.com/jGleitz/markdown-it-prism/compare/v2.1.5...v2.1.6) (2021-03-06)
+
+
+### Bug Fixes
+
+* declare MIT licence in package.json ([6871e22](https://github.com/jGleitz/markdown-it-prism/commit/6871e2217bcea1d21f9b61fa96a8f315d0a2c1e8))
+
+## [2.1.5](https://github.com/jGleitz/markdown-it-prism/compare/v2.1.4...v2.1.5) (2021-03-06)
+
+
+### Bug Fixes
+
+* **license:** re-license under MIT ([7151b08](https://github.com/jGleitz/markdown-it-prism/commit/7151b08986ddcd52a9b4e679383a2e896f1d4451))
+
 ## [2.1.4](https://github.com/jGleitz/markdown-it-prism/compare/v2.1.3...v2.1.4) (2020-12-31)
 
 
