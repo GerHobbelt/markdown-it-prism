@@ -119,7 +119,6 @@ describe('markdown-it-prism', () => {
 			.use(markdownItPrism)
 			.render(read('input/indented.md'))
 		).to.equalIgnoreSpaces(read('expected/indented.html'));
-
 	});
 
 	it('adds classes even if the language is unknown', () => {
@@ -128,6 +127,13 @@ describe('markdown-it-prism', () => {
 			.render(read('input/fenced-with-unknown-language.md'))
 		).to.equalIgnoreSpaces(read('expected/fenced-with-unknown-language.html'));
 	});
+
+	it('escapes HTML in the language name', async () => {
+		expect(markdownit()
+			.use(markdownItPrism)
+			.render(await read('input/fenced-with-html-in-language.md'))
+		).toEqual(await read('expected/fenced-with-html-in-language.html'))
+	})
 
 	it('falls back to defaultLanguageForUnknown if the specified language is unknown', () => {
 		expect(markdownit()

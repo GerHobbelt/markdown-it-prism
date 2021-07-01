@@ -119,7 +119,7 @@ function highlight(markdownit: MarkdownIt, options: Options, text: string, lang:
 		}
 		code = markdownit.utils.escapeHtml(text);
 	}
-	const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${langToUse}"` : '';
+	const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${markdownit.utils.escapeHtml(langToUse)}"` : '';
 	return `<pre${classAttribute}><code${classAttribute}>${code}</code></pre>`;
 }
 
