@@ -1,44 +1,19 @@
-"use strict";
+/*! markdown-it-prism 2.1.7-5 https://github.com//GerHobbelt/markdown-it-prism @license MIT */
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = markdownItPrism;
+'use strict';
 
-var _prismjs = _interopRequireDefault(require("@gerhobbelt/prismjs"));
+var Prism = require('@gerhobbelt/prismjs');
+var loadLanguages = require('@gerhobbelt/prismjs/components/index.js');
 
-var _components = _interopRequireDefault(require("@gerhobbelt/prismjs/components/"));
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var Prism__default = /*#__PURE__*/_interopDefaultLegacy(Prism);
+var loadLanguages__default = /*#__PURE__*/_interopDefaultLegacy(loadLanguages);
 
-/**
- * A callback that can be used to perform custom initialisation of the Prism instance.
- *
- * @callback PrismInitialisationCallback
- * @param {Prism} prism
- *        The Prism instance
- */
-
-/**
- * The options for the markdown-it-prism plugin
- *
- * @typedef {Object} MarkdownItPrismOptions
- * @property {String[]} plugins
- *        Names of Prism plugins to load
- * @property {PrismInitialisationCallback} init
- *        Callback for Prism initialisation
- * @property {String} defaultLanguageForUnknown
- *        The language to use for code blocks that specify a language that Prism does not know
- * @property {String} defaultLanguageForUnspecified
- *        The language to use for code block that do not specify a language
- * @property {String} defaultLanguage
- *        Shorthand to set both {@code defaultLanguageForUnknown} and {@code defaultLanguageForUnspecified} to the same value
- * @property {Function} noKnownLanguageCallback
- *        Function which will be invoked when the specified/default language is not known to Prism. The function is passed the error message, the specified language and the set of available languages.
- */
 const DEFAULTS = {
   plugins: [],
-  init: () => {},
+  init: () => {// do nothing by default
+  },
   defaultLanguageForUnknown: undefined,
   defaultLanguageForUnspecified: undefined,
   defaultLanguage: undefined,
@@ -47,18 +22,18 @@ const DEFAULTS = {
 /**
  * Loads the provided {@code lang} into prism.
  *
- * @param {String} lang
+ * @param lang
  *        Code of the language to load.
- * @return {Object} The Prism language object for the provided {@code lang} code. {@code undefined} if the language is not known to Prism.
+ * @return The Prism language object for the provided {@code lang} code. {@code undefined} if the language is not known to Prism.
  */
 
 function loadPrismLang(lang) {
   if (!lang) return undefined;
-  let langObject = _prismjs.default.languages[lang];
+  let langObject = Prism__default['default'].languages[lang];
 
   if (langObject === undefined) {
-    (0, _components.default)([lang]);
-    langObject = _prismjs.default.languages[lang];
+    loadLanguages__default['default']([lang]);
+    langObject = Prism__default['default'].languages[lang];
   }
 
   return langObject;
@@ -81,11 +56,11 @@ function loadPrismPlugin(name) {
 /**
  * Select the language to use for highlighting, based on the provided options and the specified language.
  *
- * @param {Object} options
+ * @param options
  *        The options that were used to initialise the plugin.
- * @param {String} lang
+ * @param lang
  *        Code of the language to highlight the text in.
- * @return {Array} An array where the first element is the name of the language to use, and the second element is the PRISM language object for that language.
+ * @return An array where the first element is the name of the language to use, and the second element is the PRISM language object for that language.
  */
 
 
@@ -108,43 +83,43 @@ function selectLanguage(options, lang) {
 /**
  * Highlights the provided text using Prism.
  *
- * @param {MarkdownIt} markdownit
+ * @param markdownit
  *        Instance of MarkdownIt Class. This argument is bound in markdownItPrism().
- * @param {MarkdownItPrismOptions} options
+ * @param options
  *        The options that have been used to initialise the plugin. This argument is bound in markdownItPrism().
- * @param {String} text
+ * @param text
  *        The text to highlight.
- * @param {String} lang
+ * @param lang
  *        Code of the language to highlight the text in.
- * @return {String} {@code text} wrapped in {@code &lt;pre&gt;} and {@code &lt;code&gt;}, both equipped with the appropriate class (markdown-it’s langPrefix + lang). If Prism knows {@code lang}, {@code text} will be highlighted by it.
+ * @return {@code text} wrapped in {@code &lt;pre&gt;} and {@code &lt;code&gt;}, both equipped with the appropriate class
+ *  (markdown-it’s langPrefix + lang). If Prism knows {@code lang}, {@code text} will be highlighted by it.
  */
 
 
 function highlight(markdownit, options, text, lang) {
-  let langToUse, prismLang;
-  [langToUse, prismLang] = selectLanguage(options, lang);
+  const [langToUse, prismLang] = selectLanguage(options, lang);
   let code;
 
   if (prismLang) {
-    code = _prismjs.default.highlight(text, prismLang);
+    code = Prism__default['default'].highlight(text, prismLang, langToUse);
   } else {
     if (options.noKnownLanguageCallback && lang) {
-      options.noKnownLanguageCallback(`There is no Prism language '${lang}' for highlight chunk:\n${text}`, lang, _components.default.getSupportedLanguages());
+      options.noKnownLanguageCallback(`There is no Prism language '${lang}' for highlight chunk:\n${text}`, lang, loadLanguages__default['default'].getSupportedLanguages());
     }
 
     code = markdownit.utils.escapeHtml(text);
   }
 
-  const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${langToUse}"` : '';
+  const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${markdownit.utils.escapeHtml(langToUse)}"` : '';
   return `<pre${classAttribute}><code${classAttribute}>${code}</code></pre>`;
 }
 /**
  * Checks whether an option represents a valid Prism language
  *
- * @param {MarkdownItPrismOptions} options
+ * @param options
  *        The options that have been used to initialise the plugin.
  * @param optionName
- *        The key of the option insides {@code options} that shall be checked.
+ *        The key of the option inside {@code options} that shall be checked.
  * @throws {Error} If the option is not set to a valid Prism language.
  */
 
@@ -160,9 +135,9 @@ function checkLanguageOption(options, optionName) {
  * Initialisation function of the plugin. This function is not called directly by clients, but is rather provided
  * to MarkdownIt’s {@link MarkdownIt.use} function.
  *
- * @param {MarkdownIt} markdownit
+ * @param markdownit
  *        The markdown it instance the plugin is being registered to.
- * @param {MarkdownItPrismOptions} useroptions
+ * @param useroptions
  *        The options this plugin is being initialised with.
  */
 
@@ -175,10 +150,10 @@ function markdownItPrism(markdownit, useroptions) {
   options.defaultLanguageForUnknown = options.defaultLanguageForUnknown || options.defaultLanguage;
   options.defaultLanguageForUnspecified = options.defaultLanguageForUnspecified || options.defaultLanguage;
   options.plugins.forEach(loadPrismPlugin);
-  options.init(_prismjs.default); // register ourselves as highlighter
+  options.init(Prism__default['default']); // register ourselves as highlighter
 
-  markdownit.options.highlight = (...args) => highlight(markdownit, options, ...args);
+  markdownit.options.highlight = (text, lang) => highlight(markdownit, options, text, lang);
 }
 
-module.exports = exports.default;
-module.exports.default = exports.default;
+module.exports = markdownItPrism;
+//# sourceMappingURL=markdownItPrism.cjs.map

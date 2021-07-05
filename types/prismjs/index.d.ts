@@ -4,6 +4,6 @@ declare module 'prismjs/components/' {
 		silent: boolean
 	}
 
-	const loadLanguages: LoadLanguages
-	export default loadLanguages
+	const loadLanguages: LoadLanguages;
+	export default loadLanguages;
 }
