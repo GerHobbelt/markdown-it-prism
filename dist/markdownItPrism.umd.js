@@ -1,4 +1,4 @@
-/*! markdown-it-prism 2.1.7-5 https://github.com//GerHobbelt/markdown-it-prism @license MIT */
+/*! markdown-it-prism 2.1.8-6 https://github.com//GerHobbelt/markdown-it-prism @license MIT */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@gerhobbelt/prismjs'), require('@gerhobbelt/prismjs/components/index.js')) :

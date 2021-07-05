@@ -1,4 +1,4 @@
-/*! markdown-it-prism 2.1.7-5 https://github.com//GerHobbelt/markdown-it-prism @license MIT */
+/*! markdown-it-prism 2.1.8-6 https://github.com//GerHobbelt/markdown-it-prism @license MIT */
 
 import Prism from '@gerhobbelt/prismjs';
 import loadLanguages from '@gerhobbelt/prismjs/components/index.js';
