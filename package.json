@@ -1,6 +1,6 @@
 {
   "name": "@gerhobbelt/markdown-it-prism",
-  "version": "2.1.7-5",
+  "version": "2.1.8-5",
   "description": "Highlights code blocks in markdown-it using Prism.",
   "keywords": [
     "markdown-it",
@@ -46,7 +46,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@gerhobbelt/prismjs": ">=1.23.*"
+    "@gerhobbelt/prismjs": ">=1.24.1-1"
   },
   "devDependencies": {
     "@gerhobbelt/markdown-it": "12.1.0-64",
